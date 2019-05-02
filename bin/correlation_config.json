@@ -1,0 +1,58 @@
+{
+        "Basis_Information": {
+		"Language": "Chinese",
+		"Comparison_Group": "C-VS-T",
+		"Reference_data_set":"refMrna.fa",
+                "Date": "20180322",
+                "SGEProject": "MASSspe",
+                "SGEQueue": "msi.q",
+		"step":"0-6",
+		"Transcriptome ID type":"gene",
+		"Transcriptome_path":"/ldfssz1/SP_MSI/USER/luoxing/python/tool/Correlation_Analysis/C-VS-T/Transcription/",
+		"Proteomics_path":"/ldfssz1/SP_MSI/USER/luoxing/python/tool/Correlation_Analysis/C-VS-T/protein/",
+		"Whether to empty the process file":"Yes",
+                "R_HOME_PATH": "/zfssz3/SP_MSI/Pipeline/software/R/R-devel/bin/",
+                "perl_HOME_PATH": "/usr/bin/",
+                "Python_HOME_PATH": "/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/lib/anaconda3/bin/",
+		"Correlation analysis process server path":"/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/"
+	  },
+	   "Filter Parameters": {
+                "ProteinFoldChange": "1.2",
+                "GeneFoldChange": "2",
+		"Protein p value Threshold":"0.5",
+		"Gene p value Threshold":"0.001",
+                "Gene Non-difference label":"*",
+		"BlastEvalue": "1e-8",
+		"Blast_Memory":"2G"
+        },
+	 "Transcription factor":
+        {
+		"Whether to do transcription factor analysis":"Yes",
+                "TF_Species_Name": "Homo_sapiens",
+                "TF_Species_type": "animal",
+                "TF_Memory":"0.5G",
+		"TF_plant_database":"/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/lib/database/Plant-TF-tab",
+		"TF_animal_database":"/ifs4/BC_PUB/biosoft/pipeline/RNA/RNA_RNAseq/RNA_RNAseq_2017a/TF/Animal-TF-tab/"
+
+        },
+
+            "Annotation":
+        {	"Whether to do transcriptome annotation and enrichment":"No",
+		"Whether to do proteome annotation and enrichment":"No",
+                "NR_Species_type": "animal",
+                "AnnotationMemory":"1G",
+		"Whether the transcriptome ko file exist":"Yes",
+		"root_GO":"/zfssz3/SP_MSI/Pipeline/FuctionalAnalysis/database/nr/nr_20170924/20170924/",
+		"root_KEGG":"/zfssz3/SP_MSI/Pipeline/FuctionalAnalysis/database/kegg/89.1/89.1/"
+                
+        },
+	"Network":
+        {	"NetworkMemory":"0.1G",
+                "String_Species_type": "Human",
+		"root_database":"/zfssz3/SP_MSI/Pipeline/FuctionalAnalysis/database/string/string_v10.5/"
+                
+        }
+
+}
+
+

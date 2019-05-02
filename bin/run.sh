@@ -1,0 +1,2 @@
+#export PYTHONPATH=/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/lib/anaconda3/lib/python3.6/site-packages/:/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/lib/anaconda3/lib/python3.6/
+/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/lib/anaconda3/bin/python /ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/src/main.py
