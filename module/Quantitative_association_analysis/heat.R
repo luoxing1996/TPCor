@@ -1,0 +1,12 @@
+#Args[6]=input Args[7]=output
+.libPaths( "/zfssz3/SP_MSI/Pipeline/software/R/R-devel/lib64/R/library" )
+library(RColorBrewer,warn.conflicts = T)
+library(gplots,warn.conflicts = FALSE)
+library(caTools,warn.conflicts = FALSE)
+library(bitops,warn.conflicts = FALSE)
+library(grid,warn.conflicts = FALSE)
+Args <- commandArgs()
+x<-read.table(Args[6])
+df<-as.matrix(x)
+bitmap(file=Args[7],type ="jpeg",res=1200)
+gplots::heatmap.2(df, scale = "none", col=bluered(100), trace = "none", density.info = "none",main="Cluster for Correlation" )
