@@ -1,0 +1,136 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>华大基因蛋白质组与转录组关联分析结题报告</title>
+<link href="css/report.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/report.js"></script>
+<style type="text/css">
+html{
+	overflow:auto;
+}
+body{
+	position:relative;
+}
+</style>
+</head>
+<body>
+	<div class=seq_cn1>
+		<div class="top_btn"></div>
+		<h1><a name="1"></a>1 软件使用说明</h1>
+		<h2><a name="1.1"></a>1.1 运行步骤</h2>
+			<p>1.根据时间和项目号，任务单号
+            在你的工作目录中创建一个为项目号的文件夹（以下统称该文件夹为root）。
+			<p>2.拷贝/ldfssz1/SP_MSI/Pipeline/Pipeline/TP_Cor/bin文件下的run.sh和correlation_config.json到root。
+			<p>3.根据项目内容，修改相应的correlation_config.json内的参数。
+			<p>4.将RNA_Seq所有比较组文件夹拷贝到你的目录中命名为trans（以下统称该文件夹为transcription_root）。
+			<p>5.将iTRAQ所有比较组文件夹拷贝到你的目录中命名为pro（以下统称该文件夹为protein_root）。
+			<p>6.将protein_root中的对应的比较组根据json文件的Comparison_Group参数设置对应的文件名，注意每个比较组需要_C.xls，_F.xls，_P.xls，_path.xls，_Down.xls，_Up.xls,.xls。
+			<p>7.将transcription_root中的对应的比较组根据json文件的Comparison_Group参数设置对应的文件名，注意每个比较组需要_C.txt，_F.txt，_P.txt，_path.txt，.GeneDiffExp.xls，如果转录组id为gene，则需要相应的参考基因集文件refMrna.fa和id转换文件gene2tr，如果Whether the transcriptome ko file exist参数为yes，则需要对应的.ko文件。
+			<p>8.sh run.sh即可。
+			<p>注意：如果输出BGI smile,则运行成功，否则失败，找到原因后，设置json文件的step从对应步骤开始即可，如果2-6步运行时间超过一小时，则很可能运行失败，你需要检测配置错误，重新从该步运行。json中的Comparison_Group参数命名的id可以是任意id，但是必须要与转录组与蛋白质组所对应的比较组命名一致。转录因子流程需要你查阅附件1中看是否有该物种再决定是否进行转录因子分析。转录组需要提供相应的ko文件，如果找不到ko文件，可以将Whether the transcriptome ko file exist设置为no，流程会再跑一遍转录组的Pathway通路富集流程。如果转录组蛋白质组没有做相应的注释与富集，可以设置相应参数为no，该流程会自动进行注释与富集，并且会生成相应的ko文件。
+
+		<h2><a name="1.2"></a>1.2 correlation_config.json文件参数说明</h2>
+					<center><b>表1-2 流程参数配置说明：配置文件不区分大小写，所有分割符请使用英文符号，*号参数代表维护人员的配置参数，使用者可以忽略。</b></center>
+				<div>
+					<table>
+
+
+        <tr><th>Basis_Information</th><th>基础参数配置说明</th></tr>
+						<tr><td>Language</td><td>根据报告需要生成中文或者英文项目报告</td></tr>
+						<tr><td>Comparison_Group</td><td>每个关联分析比较组的名字，使用逗号隔开</td></tr>
+						<tr><td>Reference_data_set</td><td>转录组参考基因集文件的名字</td></tr>
+						<tr><td>Date</td><td>流程的开始时间</td></tr>
+						<tr><td>SGEProject</td><td>提交任务时所需的CPU名字</td></tr>
+						<tr><td>SGEQueue</td><td>提交任务时所需的队列名字</td></tr>
+						<tr><td>step</td><td>流程运行步骤，最大为0-6</td></tr>
+						<tr><td>Transcriptome ID type</td><td>转录组的起始id类型</td></tr>
+						<tr><td>Transcriptome_path</td><td>所有转录组的文件夹路径</td></tr>
+						<tr><td>Proteomics_path</td><td>所有蛋白质组的文件夹路径</td></tr>
+						<tr><td>Whether to empty the process file</td><td>是否删除流程生成的中间文件</td></tr>
+						<tr><td>*R_HOME_PATH</td><td>R路径</td></tr>
+						<tr><td>*perl_HOME_PATH</td><td>perl路径</td></tr>
+						<tr><td>*Python_HOME_PATH</td><td>python3路径</td></tr>
+						<tr><td>*Correlation analysis process server path</td><td>关联分析流程所在路径</td></tr>
+		<tr><th>Filter Parameters</th><th>差异倍数与Blast配置说明</th></tr>
+						<tr><td>ProteinFoldChange</td><td>蛋白组差异倍数，注意与itraq参数一致</td></tr>
+						<tr><td>GeneFoldChange</td><td>转录组差异倍数，注意与RNASeq参数一致</td></tr>
+						<tr><td>Protein p value Threshold</td><td>蛋白组p或者q阈值，注意与itraq参数一致</td></tr>
+						<tr><td>Gene p value Threshold</td><td>转录组p阈值，注意与RNASeq参数一致</td></tr>
+						<tr><td>Gene Non-difference label</td><td>非差异转录组标记</td></tr>
+						<tr><td>BlastEvalue</td><td>Blast E值</td></tr>
+						<tr><td>Blast_Memory</td><td>Blast任务所需内存</td></tr>
+		<tr><th>Transcription factor</th><th>转录因子配置说明</th></tr>
+						<tr><td>Whether to do transcription factor analysis</td><td>根据附件1是否进行转录因子分析</td></tr>
+						<tr><td>TF_Species_Name</td><td>比较组物种学名</td></tr>
+						<tr><td>TF_Species_type</td><td>比较组物种类型：animal，plant，microorganism</td></tr>
+						<tr><td>TF_Memory</td><td>转录因子提交任务所需内存</td></tr>
+						<tr><td>*TF_plant_database</td><td>转录因子植物数据库路径</td></tr>
+						<tr><td>*TF_animal_database</td><td>转录因子动物数据库路径</td></tr>
+		<tr><th>Annotation</th><th>功能注释富集配置说明</th></tr>
+						<tr><td>Whether to do transcriptome annotation and enrichment</td><td>转录组是否做注释与富集</td></tr>
+						<tr><td>Whether to do protein annotation and enrichment</td><td>蛋白质组是否做注释与富集</td></tr>
+						<tr><td>NR_Species_type</td><td>根据附件2填写NR数据库中物种的分类</td></tr>
+						<tr><td>AnnotationMemory</td><td>功能富集提交任务所需内存</td></tr>
+						<tr><td>TF_Memory</td><td>转录因子提交任务所需内存</td></tr>
+						<tr><td>Whether the transcriptome ko file exist</td><td>转录组是否存在ko文件</td></tr>
+						<tr><td>*root_GO</td><td>GO数据库路径</td></tr>
+						<tr><td>*root_KEGG</td><td>KEGG数据库路径</td></tr>
+
+		<tr><th>Network</th><th>关联网络配置说明</th></tr>
+						<tr><td>NetworkMemory</td><td>网络分析提交任务所需内存</td></tr>
+						<tr><td>String_Species_type</td><td>根据附件3填写网络分析物种名</td></tr>
+						<tr><td>*root_database</td><td>String数据库路径</td></tr>
+                    </table>
+		<h1><a name="2"></a>2 流程文件与文件夹说明</h1>
+		<h2><a name="2.1"></a>2.1 以比较组为名字的文件夹</h2>
+		<p> <div class="tc"><img width=90% src="./group.png" /></div>
+		<h2><a name="2.2"></a>2.2 Data_Analysis文件夹</h2>
+		<p> <div class="tc"><img width=90% src="./data_analysis.png" /></div>
+		<h2><a name="2.3"></a>2.3 submit文件夹</h2>
+		<p> <div class="tc"><img width=90% src="./submit.png" /></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		<h1><a name="3"></a>3 流程代码解析</h1>
+					<center><b>表3-1 流程代码0-6步功能</b></center>
+				<div>
+					<table>
+
+
+
+		<tr><th>step</th><th>功能</th></tr>
+						<tr><td>0</td><td>将每个比较组分别拷贝到对应文件夹，生成对应的Data_Analysis文件夹与submit文件夹，程序初始化</td></tr>
+						<tr><td>1</td><td>进行定量分析Blast,关联网络分析Blast，【转录因子分析Blast】（可选）</td></tr>
+						<tr><td>2</td><td>进行定量分析，生成关联火山图，饼图，散点图</td></tr>
+						<tr><td>3</td><td>进行功能富集分析，生成功能火山图，功能气泡图，功能关联图，Pathway整合分析通路图</td></tr>
+						<tr><td>4</td><td>进行关联网络分析，生成对应Pathway通路互作网络图，PPI关联互作网络图</td></tr>
+						<tr><td>5</td><td>转录因子分析，生成TF饼图，TF条形图，TF小提琴图，TF卡方检验统计表</td></tr>
+						<tr><td>6</td><td>生成pdf报告，【删除流程中间非必需文件】（可选）</td></tr>
+		
+                    </table>
+					<br>
+
+
+
+		
+                    </table>
+					<br>
+				<div>
+	</div>
+</body>
+<html>
