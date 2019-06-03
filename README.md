@@ -135,12 +135,12 @@ Note: If BGIsmile is output, the operation is successful, otherwise it fails. Af
 
 │├──help.pdf#User help document
 
-└──demo#BGI Apple sample code, accessible only to administrators
+└──demo#BGI Apple sample code, accessible only to administrators,
 
 
 Bin: The main program and json file, usually only the main script that the user is allowed to use will be placed in this directory.
 
-Lib: The environment variable information needed to run the process, the python third-party package, the UI diagram, the transcription factor plant database, and the required fonts for reporting.
+Lib: The environment variable information needed to run the process, the python third-party package, the UI diagram, the transcription factor plant database, and the required fonts for reporting.If necessary, please send an email luoxing@genomics.cn
 
 Demo: A set of standard test data.
 
