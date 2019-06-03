@@ -135,7 +135,7 @@ Note: If BGIsmile is output, the operation is successful, otherwise it fails. Af
 
 │├──help.pdf#User help document
 
-└──demo#BGI Apple sample code, accessible only to administrators,
+└──demo#BGI Apple sample code, accessible only to administrators,If you need it，Please send email to luoxing@genomics.cn
 
 
 Bin: The main program and json file, usually only the main script that the user is allowed to use will be placed in this directory.
