@@ -139,8 +139,13 @@ Note: If BGIsmile is output, the operation is successful, otherwise it fails. Af
 
 
 Bin: The main program and json file, usually only the main script that the user is allowed to use will be placed in this directory.
+
 Lib: The environment variable information needed to run the process, the python third-party package, the UI diagram, the transcription factor plant database, and the required fonts for reporting.
+
 Demo: A set of standard test data.
+
 Module: software and scripts.
+
 Src: All algorithms of the process, usually only accessible by administrators.
+
 Tutorial: Help documentation.
